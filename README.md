@@ -10,6 +10,7 @@ Edit existing course (image, title, definition, price)
 
 Important Information:
 Project has to be deployed on server in order to run accurately. The project has a .json file connection in order to load initial data.
+The project can be run with minified javascript file (courses-min.js), courseInfo.json and main.html.
 Please allow additional dialog-boxes on browser since delete confirmation and information messages use them.
 
 B) USER VIEW:
@@ -52,11 +53,13 @@ C)TECHNICAL INFORMATION:
 In developing this project Angular 1.6.2 is used along with html, bootstrap and json.
 
 FILES AND DATA STORAGE
-	
+
+JSON:
 courseInfo.json:
 To not start with empty data there is a .json file created with six courses. If the local storage for courses is empty the data is fetched from the json file.
 In the initial run, all the data is transferred to local storage and as long as the local storage is not reset, the json file is not used again.
 
+JAVASCRIPT:
 JsonDataServices.js:
 Only is used to load courseInfo.json in the initial run(when the local storage is empty)
 
@@ -65,12 +68,17 @@ AngularJS library of version 1.6.2
 	
 CoursesApp.js
 The main javascript file where the functions for addition, deletion, editing, validation are stored. The access to the local storage and commication with JsonDataServices.js is also done here.
-	
+
+courses-min.js
+Javascript file in which JsonDataServices.js, Angular.js and CoursesApp.js are bundled and minimized. It can be used as the sole javascript file to run to web app.
+
+Note: Since the javascripts are bundled into courses-min.js, the other javascript files are not needed to run the project. However they can be viewed to make editions and changes easily.
+
+HTML:
 Main.html
 The only html file of the project. The content is modified dynamically using ng-show directive of AngularJS. Bootstrap is used for the css.
 
-
-
+STORAGE:
 Local Storage:
 After the first run of program the array(courses with all course data) is copied here. In every edition, deletion and course addition, the courses array is updated and actual array is copied to the local storage instead of the older one. This way the data is synchronized and changes are immediately reflected to the website.
 .
@@ -83,11 +91,11 @@ To access the local storage ngStore dependency is added to the project.
 
 
 Bundling and Minifying:
-Gulp is used to minify and bundle the code before uploading on the github
+Gulp is used to minify and bundle the code before uploading on the github in courses-min.js.
 
 HOW TO RUN
 	
-Place all files (.html, .json and .js) in the same directory.
+Place files (main.html, courseInfo.json and courses-min.js) in the same directory.
 Using command line navigate to the project directory.
 Deploy the project on server and run.
 You can use command line http-server command to easily deploy and run
