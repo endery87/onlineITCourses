@@ -1,0 +1,82 @@
+<html ng-app="CoursesApp">
+
+<head>
+    <title>Online IT Courses</title>
+
+
+    <!--DEPENDENCIES, JS LIBRRARIES, BOOTSTRAP SOURCE-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">   
+    <script src="angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.js"></script>
+    <script src="CoursesApp.js"></script>
+    <script src="jsonDataSvc.js"></script>
+
+</head>
+<body ng-controller="myCtrl as ctrl"> 
+    <!--Dynamic Navigation Bar-->
+    <ul class="nav navbar-nav">         
+      <li class="active"><a href="#" ng-click="ctrl.changeTab('main')">Main</a></li>
+      <li class="active" ng-show="ctrl.currentTab=='course'"><a href="#">{{ctrl.selectedCourse.title}}</a></li>
+      <li><a href="#" ng-click="ctrl.changeTab('addCourse')">Add Course</a></li>
+    </ul>
+    <br/>
+    <hr/>
+    <div class="container">
+        <!--div for Main page, shown when the current tab is "Main"-->
+        <div ng-show="ctrl.currentTab==='main'">
+            <h3>Online Course List </h3>
+            <hr/>
+            <div ng-show="x.id!=undefined" ng-repeat="x in ctrl.courses track by $index" class="col-sm-4 col-md-4 col-lg-4">  
+                <figure style="text-align:center">          
+                 <img width="100px" height="100px" src="{{x.image}}" ng-click="ctrl.viewCourse($index)">   
+                 <figcaption ng-click="ctrl.viewCourse($index)">{{x.title}}</figcaption>
+                </figure>
+            </div>
+        </div>
+        <!-- div for course tab-->
+        <div ng-show="ctrl.currentTab==='course'">
+            <img width="100px" height="100px" src="{{ctrl.selectedCourse.image}}"></h3>
+            <!--course tab in default mode-->
+            <div ng-show="!ctrl.editMode">
+                <label>Title:</label><p>{{ctrl.selectedCourse.title}}</p>
+                <label>Description:</label><p>{{ctrl.selectedCourse.description}}</p>
+                <label>Price:</label><p>{{ctrl.selectedCourse.price}}$</p>
+                <label>Image:</label><p>{{ctrl.selectedCourse.image}}</p>
+                <button class="btn" ng-click="ctrl.toggleEdit()">Edit</button>
+                <button class="btn" ng-click="ctrl.delete()">Delete</button>
+            </div>            
+            <!--course tab in edit mode-->
+            <div ng-show="ctrl.editMode">
+                <label>Title:</label><input type="text" class="form-control" style="width:240px" ng-change="ctrl.checkTitle('edit')" ng-value="ctrl.selectedCourse.title"  ng-model="ctrl.newEdit.title"></input>(2-10 chars){{ctrl.titleCheck}}</p><hr/>
+                <label>Description:</label><input type="text" class="form-control" ng-change="ctrl.checkDesc('edit')" ng-value="ctrl.selectedCourse.description" ng-model="ctrl.newEdit.description"></input>(5-50chars)pc+{{ctrl.descCheck}}</p><hr/>
+                <label>Price:</label><input type="number" class="form-control" style="width:80px" ng-change="ctrl.checkPrice('edit')"  ng-value="ctrl.selectedCourse.price" ng-model="ctrl.newEdit.price" >$</input>$(10-60){{ctrl.priceCheck}}</p><hr/>
+                <label>Image Link:</label><input type="text" class="form-control" ng-change="ctrl.checkImage('edit')" ng-value="ctrl.selectedCourse.image" ng-model="ctrl.newEdit.image">$</input>(Only .jpg,.svg,.jpg,.png,.gif){{ctrl.imageCheck}}</p><hr/>
+                <button class="btn" ng-show="ctrl.checkInputs()" ng-click="ctrl.save()">Save</button>
+                <!--save button with input validation. only active if all the inputs are valid-->
+                <div ng-show="!ctrl.checkInputs()">
+                    <button  class="btn"  ng-disabled=true>Save</button>
+                    <p class="text-danger">There is an invalid input</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- add course tab-->
+        <div ng-show="ctrl.currentTab=='addCourse'"> 
+            <label>Title</label><br/><input type="text" class="form-control" style="width:240px"  ng-model="ctrl.newCourse.title" ng-change="ctrl.checkTitle('add')"></input>(2-10 chars){{ctrl.titleCheck}}</p><hr/>
+            <label> Description:</label><input type="text" class="form-control" ng-model="ctrl.newCourse.description" ng-change="ctrl.checkDesc('add')"></input>(5-50chars)pc+{{ctrl.descCheck}}</p><hr/>
+            <label> Price:</label><input type="number"  class="form-control" style="width:80px" ng-model="ctrl.newCourse.price"  ng-change="ctrl.checkPrice('add')"></input>$(10-60){{ctrl.priceCheck}}</p><hr/>
+            <label>Image Link:</label><input type="text" class="form-control" ng-model="ctrl.newCourse.image"  ng-change="ctrl.checkImage('add')"></input>(Only .jpg,.svg,.jpg,.png,.gif){{ctrl.imageCheck}}</p><hr/>
+            
+            <!--add button with input validation. only active if all the inputs are valid-->
+            <button class="btn" ng-show="ctrl.checkInputs()" ng-click="ctrl.addCourse()">Add</button>
+            <div ng-show="!ctrl.checkInputs()">
+                    <button  class="btn"  ng-disabled=true>Add</button>
+                    <p class="text-danger"> All fields have to be filled with valid values</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
