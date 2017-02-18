@@ -49,7 +49,7 @@
             <!--course tab in edit mode-->
             <div ng-show="ctrl.editMode">
                 <label>Title:</label><input type="text" class="form-control" style="width:240px" ng-change="ctrl.checkTitle('edit')" ng-value="ctrl.selectedCourse.title"  ng-model="ctrl.newEdit.title"></input>(2-10 chars){{ctrl.titleCheck}}</p><hr/>
-                <label>Description:</label><input type="text" class="form-control" ng-change="ctrl.checkDesc('edit')" ng-value="ctrl.selectedCourse.description" ng-model="ctrl.newEdit.description"></input>(5-50chars)pc+{{ctrl.descCheck}}</p><hr/>
+                <label>Description:</label><input type="text" class="form-control" ng-change="ctrl.checkDesc('edit')" ng-value="ctrl.selectedCourse.description" ng-model="ctrl.newEdit.description"></input>(5-50chars){{ctrl.descCheck}}</p><hr/>
                 <label>Price:</label><input type="number" class="form-control" style="width:80px" ng-change="ctrl.checkPrice('edit')"  ng-value="ctrl.selectedCourse.price" ng-model="ctrl.newEdit.price" >$</input>$(10-60){{ctrl.priceCheck}}</p><hr/>
                 <label>Image Link:</label><input type="text" class="form-control" ng-change="ctrl.checkImage('edit')" ng-value="ctrl.selectedCourse.image" ng-model="ctrl.newEdit.image">$</input>(Only .jpg,.svg,.jpg,.png,.gif){{ctrl.imageCheck}}</p><hr/>
                 <button class="btn" ng-show="ctrl.checkInputs()" ng-click="ctrl.save()">Save</button>
@@ -64,7 +64,7 @@
         <!-- add course tab-->
         <div ng-show="ctrl.currentTab=='addCourse'"> 
             <label>Title</label><br/><input type="text" class="form-control" style="width:240px"  ng-model="ctrl.newCourse.title" ng-change="ctrl.checkTitle('add')"></input>(2-10 chars){{ctrl.titleCheck}}</p><hr/>
-            <label> Description:</label><input type="text" class="form-control" ng-model="ctrl.newCourse.description" ng-change="ctrl.checkDesc('add')"></input>(5-50chars)pc+{{ctrl.descCheck}}</p><hr/>
+            <label> Description:</label><input type="text" class="form-control" ng-model="ctrl.newCourse.description" ng-change="ctrl.checkDesc('add')"></input>(5-50chars){{ctrl.descCheck}}</p><hr/>
             <label> Price:</label><input type="number"  class="form-control" style="width:80px" ng-model="ctrl.newCourse.price"  ng-change="ctrl.checkPrice('add')"></input>$(10-60){{ctrl.priceCheck}}</p><hr/>
             <label>Image Link:</label><input type="text" class="form-control" ng-model="ctrl.newCourse.image"  ng-change="ctrl.checkImage('add')"></input>(Only .jpg,.svg,.jpg,.png,.gif){{ctrl.imageCheck}}</p><hr/>
             
