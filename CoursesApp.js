@@ -1,5 +1,5 @@
 angular.module("CoursesApp", ["ngStorage"]).
-  controller("myCtrl", myJSCtrl)
+  controller("myCtrl", ["jsonDataSvc","$http", "$localStorage", "$q",myJSCtrl])
 
 
 function myJSCtrl(jsonDataSvc, $http, $localStorage, $q) {
