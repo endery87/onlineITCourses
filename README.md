@@ -8,9 +8,9 @@ Create new course
 Remove existing course
 Edit existing course (image, title, definition, price)
 
-Important Information:
+IMPORTANT INFO!:
 Project has to be deployed on server in order to run accurately. The project has a .json file connection in order to load initial data.
-The project can be run with minified javascript file (courses-min.js), courseInfo.json and main.html.
+The project can be run using only minified javascript file (courses-min.js), courseInfo.json and main.html. 
 Please allow additional dialog-boxes on browser since delete confirmation and information messages use them.
 
 B) USER VIEW:
